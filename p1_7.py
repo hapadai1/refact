@@ -1,13 +1,13 @@
 import math
 
 '''
-totalAmount 제거
+중간 정리 
+1. 난무하는 중첩함수
+2. 본문 길이는 7줄
+
 '''
 
 def statement(invoice, plays):
-    # totalAmount = 0
-    result = '청구내역 (고객명 : {})\n'.format(invoice['customer'])
-
     # inner function
     def play_for(perf):
         return plays[perf['playID']]
@@ -32,7 +32,11 @@ def statement(invoice, plays):
             except Exception:
                 print(play_for(performance_a)['type'])
         return result
-    
+
+    # inner function
+    def usd(number_a):
+        return number_a / 100
+
     # inner function
     def volumeCredits_for(perf):
         result = 0
@@ -54,21 +58,19 @@ def statement(invoice, plays):
         for perf in invoice['performances']:
             result += amount_for(perf)
         return result
-    
-    
+
+
+    # 본문
+    result = '청구내역 (고객명 : {})\n'.format(invoice['customer'])
     for perf in invoice['performances']:
         # 청구내역을 출력한다.
         result += '{} : ${} ({}석) \n'.format(play_for(perf)['name'], usd(amount_for(perf)),  perf['audience'])
 
-    # exetact fuction
-    # totalAmount = total_amount() 변수 인라인
-
-    result += '총액 : {} \n'.format(usd(total_amount())) # 변수 인라인
+    result += '총액 : {} \n'.format(usd(total_amount()))
     result += '적립 포인트 : {} 점 \n'.format(total_volume_credits())
     return result
 
-def usd(number_a):
-    return number_a /100
+
 
 
 if __name__ == '__main__':
