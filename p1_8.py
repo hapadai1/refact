@@ -9,10 +9,14 @@ import math
 statement : 데이터 처리
 출력 : text, html
 
-renderPlainText : 함수추출
+renderPlainText : 함수추출 - 분리
 '''
 
 def statement(invoice, plays):
+    return renderPlainText(invoice, plays)
+
+# 함수 추출하기
+def renderPlainText(invoice, plays):
     # inner function
     def play_for(perf):
         return plays[perf['playID']]
@@ -64,18 +68,16 @@ def statement(invoice, plays):
             result += amount_for(perf)
         return result
 
-    # 함수 추출하기
-    def renderPlainText(invoice, plays):
-        # 본문
-        result = '청구내역 (고객명 : {})\n'.format(invoice['customer'])
-        for perf in invoice['performances']:
-            # 청구내역을 출력한다.
-            result += '{} : ${} ({}석) \n'.format(play_for(perf)['name'], usd(amount_for(perf)), perf['audience'])
-        result += '총액 : {} \n'.format(usd(total_amount()))
-        result += '적립 포인트 : {} 점 \n'.format(total_volume_credits())
-        return result
+
+    # 본문
+    result = '청구내역 (고객명 : {})\n'.format(invoice['customer'])
+    for perf in invoice['performances']:
+        # 청구내역을 출력한다.
+        result += '{} : ${} ({}석) \n'.format(play_for(perf)['name'], usd(amount_for(perf)), perf['audience'])
+    result += '총액 : {} \n'.format(usd(total_amount()))
+    result += '적립 포인트 : {} 점 \n'.format(total_volume_credits())
+    return result
     
-    return renderPlainText(invoice, plays)
 
 
 
