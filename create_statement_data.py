@@ -2,6 +2,10 @@
 1.6장 파일분리
 
 연산부분 - 중간 데이터 생성
+
+1. 조건부 로직을 다형성으로 바꾸기
+2. 상속 계층부터 정의
+   : 공연료, 적립 포인트 계산 함수를 담을 클래스 필요
 '''
 
 
@@ -29,7 +33,8 @@ def create_statement_data(invoice, plays):
         return plays[performance_a['playID']]
 
 
-    # inner function
+    # 조건문 수정 필요함 - 연극 장르에따라 계산 방식이 달라진다. 구조적인 요소로 보완
+    # 다형성 적용
     def amount_for(performance_a):
         result = 0
         # switch (play.type)
