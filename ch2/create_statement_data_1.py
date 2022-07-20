@@ -1,24 +1,28 @@
 '''
-1.6장 파일분리
-
-연산부분 - 중간 데이터 생성
-
-1. 조건부 로직을 다형성으로 바꾸기
-2. 상속 계층부터 정의
-   : 공연료, 적립 포인트 계산 함수를 담을 클래스 필요
+1.7
+중간데이터 클래스
+: 공연료, 적립 포인트 계산 함수를 담을 클래스 필요
 '''
 
 
 import math
 
+
+class Performance_calculator:
+    def __init__(self, performance_a, play_a):
+        self.performance_a = performance_a
+        self.play_a = play_a
+
 def create_statement_data(invoice, plays):
 
     def enrich_performance(performances):
         for num, performance_a in enumerate(performances):
-
             print(num, performance_a)
-            performance_a['play'] = play_for(performance_a)
+            # cal class
+            calculator = Performance_calculator(performance_a, play_for(performance_a))
 
+            # performance_a['play'] = play_for(performance_a)
+            performance_a['play'] = calculator.play_a
             # amount_for
             performance_a['amount'] = amount_for(performance_a)
             # volumeCredits_for
