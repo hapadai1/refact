@@ -56,6 +56,7 @@ def render_plain_text(data, plays):
         return result
 
     # inner function
+    def total_volume_credits():
         result = 0  # 변수 선언을 반복문 앞으로
         for perf in data['performances']:
             result += volumeCredits_for(perf)
