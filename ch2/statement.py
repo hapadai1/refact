@@ -53,7 +53,7 @@ if __name__ == '__main__':
     print(html_result)
 
     # test
-    from p1 import statement as origin_statement
+    from ch1.p1 import statement as origin_statement
     ori_result = origin_statement(invoice_json, plays_json)
 
     if run_result == ori_result:
