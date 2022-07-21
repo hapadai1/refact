@@ -56,7 +56,7 @@ def create_statement_data(invoice, plays):
             performance_a['amount'] = calculator.amount()
             # volumeCredits_for
             # performance_a['volumeCredits_for'] = volumeCredits_for(performance_a)
-            performance_a['volumeCredits_for'] = calculator.volumeCredits()
+            performance_a['volumeCredits_for'] = calculator.volume_credits()
 
     def play_for(performance_a):
         return plays[performance_a['playID']]
